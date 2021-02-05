@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React,{useState} from 'react'
+import DropGame from './component/dropgame.component'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+export default function App() {
+  var x = 0
+  if (window.innerHeight > window.innerWidth){
+    x = 0
+  }else x = 90
+  ;
+  const [orientation, setOrientation] = useState(x)
+
+
+  window.onorientationchange = function(event) {
+      setOrientation(event.target.screen.orientation.angle);
+  };
+
+
+    return (
+      
+    <div id="enjoy" className="container">
+      
+
+      {(orientation === 0)? <div className="switch">Please switch to Landscape mode!</div>:
+      <div className="content a"><DropGame/></div>}
     </div>
-  );
+    )
 }
-
-export default App;
